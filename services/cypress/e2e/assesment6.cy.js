@@ -21,33 +21,24 @@ describe("First Test", () => {
   it("selects elements by type", () => {
     cy.get('[type="email"]');
     cy.get('[type="text"]');
-
   });
 
-  it('should submit the form with valid data', () => {
-    cy.get('#fname').type('John Doe');
-    cy.get('#email').type('john.doe@thejitu.com');
-    cy.get('#cohortNumber').type('17');
-    cy.get('#add-user-form').submit();
-
-  
+  it("should have a clickable submit button", () => {
+    cy.get("button").click();
   });
-  
 
-  // it("should have input placeholder", () => {
-  //   // cy.get(" form input placeholder").should("exist");
-  //   // cy.get("#email").should("exist");
-  //   // cy.get("#cohortNumber").should("exist").and("be.visible");
-  // });
+  it("should show an error message for invalid email format", () => {
+    const invalidEmail = "invalidemail";
 
-  // it('should show an error message for invalid email format', () => {
-  //   cy.get('#email').type('invalidemail');
-  //   cy.get('#email-error').should('contain', 'Invalid email format. Please use fname.lname@thejitu.com.');
-  // });
+    cy.get("#email").type(invalidEmail);
+  });
 
-  // it('should show an error message for invalid cohort number format', () => {
-  //   cy.get('#cohortNumber').type('invalidcohort');
-  //   cy.get('#cohortNumber-error').should('have.text', 'Invalid cohort number format. Please use a valid number.');
-  // });
+  it("should fill out the registration form and submit", () => {
+    cy.get("#fname").type("john"), cy.get("#email").type("jid.kim@thejitu.com");
+    cy.get("#cohortNumber").type("17");
+  });
 
-
+  it("should style error messages with red color", () => {
+    cy.get(".error-message").should("have.css", "color", "rgb(255, 0, 0)");
+  });
+});

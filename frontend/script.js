@@ -36,11 +36,9 @@ fetch('/register', {
 })
 .then(response => response.json())
 .then(data => {
-  // Handle success response here
   console.log(data.message);
 })
 .catch(error => {
-  // Handle error here
   console.error('Error:', error);
 });
 
